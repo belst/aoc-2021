@@ -51,7 +51,7 @@ pub fn part2(input: &HashSet<Vec<bool>>) -> usize {
     for i in 0..n {
         let oxy_ones = oxygen_rate_options.iter().filter(|v| v[i]).count();
         let scrub_ones = co2scrubber_options.iter().filter(|v| v[i]).count();
-        
+
         // if ones are majority, keep ones, otherwise keep nulls
         if oxygen_rate_options.len() > 1 {
             if oxy_ones * 2 >= oxygen_rate_options.len() {
@@ -60,14 +60,14 @@ pub fn part2(input: &HashSet<Vec<bool>>) -> usize {
                 oxygen_rate_options.retain(|v| !v[i]);
             }
         }
-        
+
         // if ones are less, keep ones, otherwise keep nulls
         if co2scrubber_options.len() > 1 {
             if scrub_ones * 2 < co2scrubber_options.len() {
                 co2scrubber_options.retain(|v| v[i]);
             } else {
                 co2scrubber_options.retain(|v| !v[i]);
-            }    
+            }
         }
     }
 
@@ -99,22 +99,23 @@ mod tests {
     #[test]
     fn test_generator() {
         let input = super::generate(INPUT);
-        let expected: HashSet<Vec<_>> = 
-            vec![
-                vec![0 == 1, 0 == 1, 1 == 1, 0 == 1, 0 == 1],
-                vec![1 == 1, 1 == 1, 1 == 1, 1 == 1, 0 == 1],
-                vec![1 == 1, 0 == 1, 1 == 1, 1 == 1, 0 == 1],
-                vec![1 == 1, 0 == 1, 1 == 1, 1 == 1, 1 == 1],
-                vec![1 == 1, 0 == 1, 1 == 1, 0 == 1, 1 == 1],
-                vec![0 == 1, 1 == 1, 1 == 1, 1 == 1, 1 == 1],
-                vec![0 == 1, 0 == 1, 1 == 1, 1 == 1, 1 == 1],
-                vec![1 == 1, 1 == 1, 1 == 1, 0 == 1, 0 == 1],
-                vec![1 == 1, 0 == 1, 0 == 1, 0 == 1, 0 == 1],
-                vec![1 == 1, 1 == 1, 0 == 1, 0 == 1, 1 == 1],
-                vec![0 == 1, 0 == 1, 0 == 1, 1 == 1, 0 == 1],
-                vec![0 == 1, 1 == 1, 0 == 1, 1 == 1, 0 == 1]
-            ].into_iter().collect();
-        
+        let expected: HashSet<Vec<_>> = vec![
+            vec![0 == 1, 0 == 1, 1 == 1, 0 == 1, 0 == 1],
+            vec![1 == 1, 1 == 1, 1 == 1, 1 == 1, 0 == 1],
+            vec![1 == 1, 0 == 1, 1 == 1, 1 == 1, 0 == 1],
+            vec![1 == 1, 0 == 1, 1 == 1, 1 == 1, 1 == 1],
+            vec![1 == 1, 0 == 1, 1 == 1, 0 == 1, 1 == 1],
+            vec![0 == 1, 1 == 1, 1 == 1, 1 == 1, 1 == 1],
+            vec![0 == 1, 0 == 1, 1 == 1, 1 == 1, 1 == 1],
+            vec![1 == 1, 1 == 1, 1 == 1, 0 == 1, 0 == 1],
+            vec![1 == 1, 0 == 1, 0 == 1, 0 == 1, 0 == 1],
+            vec![1 == 1, 1 == 1, 0 == 1, 0 == 1, 1 == 1],
+            vec![0 == 1, 0 == 1, 0 == 1, 1 == 1, 0 == 1],
+            vec![0 == 1, 1 == 1, 0 == 1, 1 == 1, 0 == 1],
+        ]
+        .into_iter()
+        .collect();
+
         assert_eq!(input, expected);
     }
 
