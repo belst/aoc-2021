@@ -1,7 +1,4 @@
-use std::{
-    collections::BTreeSet,
-    ops::{Index, IndexMut},
-};
+use std::collections::BTreeSet;
 
 #[derive(Debug, PartialEq, Eq, Hash, Clone)]
 struct Board {
@@ -15,20 +12,6 @@ struct Board {
 pub struct Bingo {
     input: Vec<usize>,
     boards: Vec<Board>,
-}
-
-impl Index<(usize, usize)> for Board {
-    type Output = usize;
-
-    fn index(&self, index: (usize, usize)) -> &Self::Output {
-        &self.board[index.0 + index.1 * self.size]
-    }
-}
-
-impl IndexMut<(usize, usize)> for Board {
-    fn index_mut(&mut self, index: (usize, usize)) -> &mut Self::Output {
-        &mut self.board[index.0 + index.1 * self.size]
-    }
 }
 
 impl Board {
